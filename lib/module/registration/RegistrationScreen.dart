@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:provider/provider.dart';
 import 'package:tik_tok_clone_app/module/login/LoginScreen.dart';
 import 'package:tik_tok_clone_app/module/registration/RegistrationScreenNotifier.dart';
@@ -23,10 +24,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     RegistrationScreenNotifier viewModel =
         Provider.of<RegistrationScreenNotifier>(context);
     final Size deviceSize = MediaQuery.of(context).size;
-    return Scaffold(
-      key: viewModel.scaffoldKey,
-      body: SingleChildScrollView(
-          child: Container(
+    return ModalProgressHUD(
+        inAsyncCall: viewModel.loading,
+        progressIndicator: CircularProgressIndicator(),
+        child: Scaffold(
+          key: viewModel.scaffoldKey,
+          body: SingleChildScrollView(
+            child: Container(
               height: deviceSize.height,
               width: deviceSize.width,
               decoration: BoxDecoration(
@@ -36,9 +40,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 HexColor("5E61F4")
               ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
               child: Padding(
-                  padding: EdgeInsets.fromLTRB(
-                      20, MediaQuery.of(context).size.height * 0.1, 20, 0),
-                  child: Column(children: [
+                padding: EdgeInsets.fromLTRB(
+                    20, MediaQuery.of(context).size.height * 0.1, 20, 0),
+                child: Column(
+                  children: [
                     Center(
                         child: Image.asset(
                       "assets/images/musical-note.png",
@@ -272,7 +277,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         ],
                       ),
                     ),
-                  ])))),
-    );
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ));
   }
 }

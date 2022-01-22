@@ -3,11 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tik_tok_clone_app/module/MainScreen.dart';
 import 'package:tik_tok_clone_app/module/login/LoginScreen.dart';
+import 'package:tik_tok_clone_app/module/profile/UploadProfilePictureScreen.dart';
 import 'package:tik_tok_clone_app/utils/config.dart';
 import 'package:tik_tok_clone_app/utils/provider/provider.dart';
-
 import 'utils/constants.dart';
-// import 'package:flutter_tiktok/view/screens/mainscreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

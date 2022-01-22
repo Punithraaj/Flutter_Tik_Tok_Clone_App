@@ -2,6 +2,9 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:tik_tok_clone_app/model/UserModel.dart';
+import 'package:uuid/uuid.dart';
+import 'package:tik_tok_clone_app/utils/firebase/FirebaseUtils.dart';
 
 abstract class BaseAuth {
   Future<User> getCurrentUser();
@@ -11,14 +14,8 @@ abstract class BaseAuth {
 }
 
 class FirebaseAuthService implements BaseAuth {
-  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-  final FirebaseStorage storage = FirebaseStorage.instance;
-
-// Collection refs
-  CollectionReference usersRef = FirebaseFirestore.instance.collection('users');
-
   Future<bool> signIn(String email, String password) async {
-    User user = (await _firebaseAuth
+    User user = (await firebaseAuth
             .signInWithEmailAndPassword(email: email, password: password)
             .onError((error, stackTrace) {
       throw "Error ${error.toString()}";
@@ -34,7 +31,7 @@ class FirebaseAuthService implements BaseAuth {
   @override
   Future<bool> createUser(
       String userName, String email, String password) async {
-    User user = (await _firebaseAuth.createUserWithEmailAndPassword(
+    User user = (await firebaseAuth.createUserWithEmailAndPassword(
             email: email, password: password))
         .user!;
 
@@ -48,12 +45,12 @@ class FirebaseAuthService implements BaseAuth {
 
   @override
   Future<User> getCurrentUser() async {
-    User user = await _firebaseAuth.currentUser!;
+    User user = await firebaseAuth.currentUser!;
     return user;
   }
 
   Future<void> signOut() async {
-    return _firebaseAuth.signOut();
+    return firebaseAuth.signOut();
   }
 
   saveUserToFirestore(String name, String userId, String email) async {
@@ -89,6 +86,6 @@ class FirebaseAuthService implements BaseAuth {
   }
 
   forgotPassword(String email) async {
-    await _firebaseAuth.sendPasswordResetEmail(email: email);
+    await firebaseAuth.sendPasswordResetEmail(email: email);
   }
 }

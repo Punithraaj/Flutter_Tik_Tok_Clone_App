@@ -42,6 +42,13 @@ dependencies:
   flutter_svg: ^1.0.0
   firebase_storage: ^10.2.4
   fluttertoast: ^8.0.8
+  uuid: ^3.0.5
+  modal_progress_hud_nsn: ^0.1.0-nullsafety-1
+  image_picker: ^0.8.4+4
+  flutter_feather_icons: ^2.0.0+1
+  font_awesome_flutter: ^9.0.0-nullsafety
+  image_cropper: ^1.4.1
+  file_picker: ^4.3.2
 
 dev_dependencies:
   flutter_test:

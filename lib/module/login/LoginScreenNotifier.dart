@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:tik_tok_clone_app/module/MainScreen.dart';
+import 'package:tik_tok_clone_app/module/profile/UploadProfilePictureScreen.dart';
 import 'package:tik_tok_clone_app/utils/firebase/FirebaseAuthService.dart';
 import 'package:tik_tok_clone_app/utils/validations.dart';
 
