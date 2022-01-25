@@ -1,16 +1,35 @@
 # tik_tok_clone_app
 
-A new Flutter project.
+# Tik_Tok_Clone_App
 
-## Getting Started
+In this video, I'm going to show you how to make a Cool Tik Tok App a new Instagram using Flutter,firebase and visual studio code.
 
-This project is a starting point for a Flutter application.
+In this tutorial, you will learn how to create a Login & Sign Up Screen and configure firebase/Firestore for Authentication and Data Storage.
+🚀 Nice, clean and modern TikTok Clone #App #UI made in #Flutter⚠️ 
 
-A few resources to get you started if this is your first Flutter project:
+## [Watch it on YouTube](https://youtu.be/QnL3fr-XpC4)
+![Preview](U3.png)
+   
+**Packages we are using:**
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+-   cupertino_icons: [link](https://pub.dev/packages/cupertino_icons)
+-   firebase_core: [link](https://pub.dev/packages/firebase_core)
+-   cloud_firestore: [link](https://pub.dev/packages/cloud_firestore)
+-   firebase_auth: [link](https://pub.dev/packages/firebase_auth)
+-   provider: [link](https://pub.dev/packages/provider)
+-   hexcolor: [link](https://pub.dev/packages/hexcolor)
+-   flutter_svg: [link](https://pub.dev/packages/flutter_svg)
+-   firebase_storage: [link](https://pub.dev/packages/firebase_storage)
+-   fluttertoast: [link](https://pub.dev/packages/fluttertoast)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Screens it contains:
+
+=> Login Screen
+
+=> SignUp Screen
+
+Now it contains all the screen, thanks for your love and support 🙏 
+
+## Photos
+![Preview](/U1.png)
+![Preview](U2.png)
