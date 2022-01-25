@@ -1,5 +1,3 @@
-# tik_tok_clone_app
-
 # Tik_Tok_Clone_App
 
 In this video, I'm going to show you how to make a Cool Tik Tok App a new Instagram using Flutter,firebase and visual studio code.
