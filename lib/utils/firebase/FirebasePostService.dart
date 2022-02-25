@@ -24,7 +24,8 @@ class FirebasePostService extends Service {
     String link = await uploadImage(profilePic, image);
     var ref = usersRef.doc(user.uid);
     ref.update({
-      "photoUrl": link ?? 'https://images.app.goo.gl/NGh74PqviFBNwFV4A',
+      "photoUrl":
+          link.isEmpty ? 'https://images.app.goo.gl/NGh74PqviFBNwFV4A' : link,
     });
   }
 
