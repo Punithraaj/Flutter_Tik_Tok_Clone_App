@@ -1,5 +1,9 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:provider/provider.dart';
+import 'package:tik_tok_clone_app/module/MainScreenNotifier.dart';
 import 'package:tik_tok_clone_app/utils/firebase/FirebaseAuthService.dart';
 
 class MainScreen extends StatefulWidget {
@@ -10,66 +14,85 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  FirebaseAuthService auth = FirebaseAuthService();
   late PageController _pageController;
   int _page = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController(initialPage: 0);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _pageController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    MainScreenNotifier viewModel = Provider.of<MainScreenNotifier>(context);
     return Scaffold(
       body: PageView(
         physics: NeverScrollableScrollPhysics(),
         controller: _pageController,
-        onPageChanged: onPageChanged,
+        onPageChanged: _onPageChanged,
         children: [
           GetScreen("Home"),
           GetScreen("Search"),
-          GetScreen("UploadVideo"),
+          GetScreen("Uplaod Videos"),
           GetScreen("Message"),
-          GetScreen("Profile"),
+          GetScreen("Profile")
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.black,
         selectedItemColor: Colors.blueAccent,
-        unselectedItemColor: Theme.of(context).textTheme.headline6?.color,
+        unselectedItemColor: Colors.white,
         elevation: 20,
         type: BottomNavigationBarType.fixed,
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home,
-              size: 30.0,
-            ),
-            label: "",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              FeatherIcons.search,
-              size: 30.0,
-            ),
-            label: "",
-          ),
-          BottomNavigationBarItem(
-            icon: tiktokIcon(context),
-            label: "",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              FeatherIcons.messageSquare,
-            ),
-            label: "",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              FeatherIcons.user,
-            ),
-            label: "",
-          ),
+        items: [
+          getBottomNavigationBarItem(
+              Icon(
+                Icons.home,
+                size: 30.0,
+              ),
+              "Home"),
+          getBottomNavigationBarItem(
+              Icon(
+                FeatherIcons.search,
+                size: 30.0,
+              ),
+              "Search"),
+          getBottomNavigationBarItem(tiktokIcon(context), ""),
+          getBottomNavigationBarItem(
+              Icon(
+                FeatherIcons.messageSquare,
+                size: 30.0,
+              ),
+              "Message"),
+          getBottomNavigationBarItem(
+              Icon(
+                FeatherIcons.user,
+                size: 30.0,
+              ),
+              "Me")
         ],
         onTap: navigationTapped,
         currentIndex: _page,
       ),
     );
+  }
+
+  void _onPageChanged(int _page) {
+    setState(() {
+      this._page = _page;
+    });
+  }
+
+  BottomNavigationBarItem getBottomNavigationBarItem(
+      Widget icon, String label) {
+    return BottomNavigationBarItem(icon: icon, label: label);
   }
 
   tiktokIcon(BuildContext context) {
@@ -92,7 +115,7 @@ class _MainScreenState extends State<MainScreen> {
               width: 38.0,
               decoration: BoxDecoration(
                 color: Color.fromARGB(255, 32, 211, 234),
-                borderRadius: BorderRadius.circular(7.0),
+                borderRadius: BorderRadius.circular(8.0),
               ),
             ),
             Center(
@@ -120,30 +143,14 @@ class _MainScreenState extends State<MainScreen> {
     _pageController.jumpToPage(page);
   }
 
-  @override
-  void initState() {
-    super.initState();
-    _pageController = PageController(initialPage: 0);
-  }
-
-  void onPageChanged(int page) {
-    setState(() {
-      this._page = page;
-    });
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _pageController.dispose();
-  }
-
   Widget GetScreen(String title) {
     return Scaffold(
-        body: Center(
-            child: TextButton(
-      child: Text(title),
-      onPressed: () {},
-    )));
+      body: Center(
+        child: TextButton(
+          child: Text(title),
+          onPressed: () {},
+        ),
+      ),
+    );
   }
 }
